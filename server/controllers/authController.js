@@ -24,6 +24,7 @@ module.exports = {
 
         req.session.user = newUser
         //logs you in right after you register... better that way
+        
         res.send(req.session.user)
     },
 
@@ -56,7 +57,7 @@ module.exports = {
         delete user.password
         req.session.user = user
         res.send(req.session.user)
-
+        
         }   
         catch(error){
         console.log('there was an error', error)

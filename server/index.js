@@ -5,7 +5,7 @@ require('dotenv/config')
 const {SERVER_PORT, SESSION_SECRET, CONNECTION_STRING} = process.env
 
 const authCtrl = require('./controllers/authController')
-const proCtrl = require('./controllers/proController')
+const proCtrl = require('./controllers/productController')
 
 const app = express()
 
@@ -32,7 +32,7 @@ app.get('/auth/currentUser', authCtrl.currentUser)
 app.get('/api/products', proCtrl.displayProducts)
 app.get('/api/product/:product_id', proCtrl.getProduct)
 
-//store if admin endpoints
+//store endpoints if admin 
 app.delete('/api/product/:product_id', proCtrl.delete)
 app.put('/api/product/:product_id', proCtrl.edit)
 

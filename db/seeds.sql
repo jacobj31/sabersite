@@ -48,7 +48,3 @@ select * from products;
 select * from orders;
 select * from orders_products;
 
-UPDATE products
-SET name = ${name}, category = ${category}, price = ${price}, image = ${image}, description = ${description}
-WHERE product_id = ${product_id};
-SELECT * FROM products;
