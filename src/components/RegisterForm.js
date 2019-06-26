@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {register} from '../redux/reducers/user'
+import {withRouter} from 'react-router-dom'
 
 
 class RegisterForm extends Component {
@@ -25,6 +26,8 @@ class RegisterForm extends Component {
     handleSubmit = () => {
         let {email, password, first_name, last_name} = this.state
         this.props.register({email, password, first_name, last_name})
+ //       this.props.history.push('/home')
+
     }
 
     render(){
@@ -57,4 +60,4 @@ class RegisterForm extends Component {
 }
 
 
-export default connect(null, {register})(RegisterForm)
+export default withRouter(connect(null, {register})(RegisterForm))

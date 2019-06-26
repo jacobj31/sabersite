@@ -35,6 +35,7 @@ app.get('/api/product/:product_id', proCtrl.getProduct)
 //store endpoints if admin 
 app.delete('/api/product/:product_id', proCtrl.delete)
 app.put('/api/product/:product_id', proCtrl.edit)
+app.post('/api/product', proCtrl.add)
 
 
 

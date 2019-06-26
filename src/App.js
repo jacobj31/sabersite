@@ -17,10 +17,10 @@ import Landing from './components/Landing'
 
 
 class App extends Component {
-// componentDidMount(){
-//   this.props.getUser()
+componentDidMount(){
+  this.props.getUser()
   
-// }
+}
   
 
   render(){

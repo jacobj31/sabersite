@@ -37,10 +37,21 @@ module.exports={
             let db = req.app.get('db')
             let {product_id} = req.params
             let {name, category, price, image, description} = req.body
-            products = await db.edit_product([product_id, name, category, price, image, description])
+            let products = await db.edit_product([product_id, name, category, price, image, description])
             res.send(products)
         }catch (error) {
             console.log('error updating product', error)
+            res.status(500).send(error)
+        }
+    },
+    add: async (req, res) => {
+        try{
+            let db = req.app.get('db')
+            let {name, category, price, image, description} = req.body
+            let products = await db.add_product(name, category, price, image, description)
+            res.send(products)
+        }catch (error){
+            console.log('error adding product', error)
             res.status(500).send(error)
         }
     }

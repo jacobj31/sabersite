@@ -23,7 +23,7 @@ class Login extends Component {
     handleSubmit = () => {
         let {email, password} = this.state
         this.props.login({email, password})
-        this.props.history.push('/home')
+//        this.props.history.push('/home')
     }
 
 
