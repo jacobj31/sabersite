@@ -16,7 +16,8 @@ const ADD_PRODUCT='ADD_PRODUCT'
 const ADD_PRODUCT_FULFILLED='ADD_PRODUCT_FULFILLED'
 
 const initialState ={
-    data: []
+    data: [],
+    selected: null
 }
 
 
@@ -29,7 +30,7 @@ export default function (state = initialState, action){
             return {...state, data: action.payload.data}
 
         case VIEW_PRODUCT_FULFILLED:
-            return {...state, data: action.payload.data}
+            return {...state, selected: action.payload.data}
 
         case DELETE_PRODUCT_FULFILLED:
             return {...state, data: action.payload.data}
@@ -51,10 +52,10 @@ export function getProducts(){
         payload: axios.get('/api/products')
 }}
 
-export function  viewProduct(){
+export function  viewProduct(product_id){
     return{
         type: VIEW_PRODUCT,
-        payload: axios.get('/api/product/:product_id')
+        payload: axios.get(`/api/product/${product_id}`)
     }
 }
 
@@ -65,10 +66,10 @@ export function deleteProduct(product_id){
     }
 }
 
-export function editProduct(info){
+export function editProduct(product_id, info){
     return{
         type: EDIT_PRODUCT,
-        payload: axios.put('/api/product/:product_id', info)
+        payload: axios.put(`/api/product/${product_id}`, info)
     }
 }
 export function addProduct(info){
