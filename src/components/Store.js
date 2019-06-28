@@ -22,11 +22,8 @@ class Store extends React.Component{
    
     componentDidMount(){
        this.props.getProducts()  
+       
     }
-
-    // viewProduct = (id) => {
-    //     this.props.viewProduct(id)
-    // }
 
     toggleAdd = () => {
         this.setState({

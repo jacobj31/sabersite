@@ -6,6 +6,7 @@ const {SERVER_PORT, SESSION_SECRET, CONNECTION_STRING} = process.env
 
 const authCtrl = require('./controllers/authController')
 const proCtrl = require('./controllers/productController')
+const cartCtrl = require('./controllers/cartController')
 
 const app = express()
 
@@ -37,6 +38,10 @@ app.delete('/api/product/:product_id', proCtrl.delete)
 app.put('/api/product/:product_id', proCtrl.edit)
 app.post('/api/product', proCtrl.add)
 
+//cart endpoints
+app.get('/cart', cartCtrl.getCart)
+app.delete('/cart/:product_id', cartCtrl.delete)
+app.post('/cart/product', cartCtrl.add)
 
 
 
