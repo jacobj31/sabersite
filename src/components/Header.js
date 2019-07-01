@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 import {logout} from '../redux/reducers/user'
 import {withRouter, Link} from 'react-router-dom'
 
+
  
 class Header extends Component{
 
@@ -14,11 +15,11 @@ class Header extends Component{
    render(){
     return(
         <div>
-            <Link to='/home'>Home</Link>
-            <Link to='/about'>About</Link>
-            <Link to='/store'>Store</Link>
-            <Link to='/cart'>Cart</Link>
-            <Link to='/orders'>Orders</Link>
+            <Link style={{textDecoration:'none'}} to='/home'>Home</Link>
+            <Link style={{textDecoration:'none'}} to='/about'>About</Link>
+            <Link style={{textDecoration:'none'}} to='/store'>Store</Link>
+            <Link style={{textDecoration:'none'}} to='/cart'>Cart</Link>
+            <Link style={{textDecoration:'none'}} to='/orders'>Orders</Link>
             <button onClick={this.out}>Logout</button>
         </div>
     )

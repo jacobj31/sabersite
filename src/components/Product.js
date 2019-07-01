@@ -17,17 +17,16 @@ class Product extends Component{
             editing: false
         }
     } 
-    componentDidMount(){
-         
-        console.log(this.props.product)
-        // {this.props.product && this.props.product.product_id ? 
-        //     this.setState({
-        //         name: this.props.product.name
-        //     }) : null}
-    }
+ 
     toggleEdit = () => {
+        let {name, category, price, image, description} = this.props.product
         this.setState({
-            addItem: !this.state.editing
+            editing: !this.state.editing,
+            name,
+            category,
+            price,
+            image,
+            description
         })
     }
     handleChange = e => {
@@ -39,6 +38,7 @@ class Product extends Component{
     handleSubmit = (id) => {
         let {name, category, price, image, description} = this.state
         this.props.editProduct(id, {name, category, price, image, description})
+        this.props.viewProduct(id)
     }
    
     render(){
@@ -51,6 +51,10 @@ class Product extends Component{
                     {this.props.product.category}
                     {this.props.product.image}
                     {this.props.product.description}
+              
+                
+                {this.state.editing? 
+                <div>
                 <input
                     name='name'
                     type='text'
@@ -81,7 +85,11 @@ class Product extends Component{
                     placeholder='Description'
                     onChange={this.handleChange}
                     value={this.state.description}/>
-                    <button onClick={() => this.handleSubmit(this.props.product.product_id)}>Edit</button>
+                    
+                    <button onClick={() => this.handleSubmit(this.props.product.product_id)}>Confirm Edit</button>
+                    
+                </div>: null}
+                    <button onClick={() => this.toggleEdit()}>{this.state.editing? 'Cancel': 'Edit'}</button>
                     <button onClick={() => this.props.addToCart(this.props.product)}>Add To Cart</button>
                 </div>
                 :null}
@@ -97,7 +105,6 @@ class Product extends Component{
 let mapStateToProps = state => {
     let {selected: product} = state.products
     let {data: cart} = state.cart
-    
     return{product, cart}
 }
 export default connect(mapStateToProps, {viewProduct, editProduct, addToCart})(Product)

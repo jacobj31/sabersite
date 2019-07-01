@@ -19,16 +19,16 @@ const initialState = {
 export default function (state = initialState, action) {
     switch(action.type) {
         case GET_USER_FULFILLED:
-            return {...state, data: action.payload}
+            return {...state, data: action.payload.data}
 
         case REGISTER_USER_FULFILLED:
-            return {...state, data: action.payload}
+            return {...state, data: action.payload.data}
         
         case LOGIN_USER_FULFILLED:
-            return {...state, data: action.payload}
+            return {...state, data: action.payload.data}
         
         case LOGOUT_USER_FULFILLED:
-            return {...state, data: action.payload}
+            return {...state, data: action.payload.data}
 
         default:
             return state

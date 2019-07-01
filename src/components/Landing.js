@@ -17,7 +17,7 @@ class Landing extends Component {
     return(
         <div>
         
-        {user && user.data.first_name ? <h1>Welcome {user.data.first_name} </h1> : <Login></Login>}
+        {user && user.first_name ? <h1>Welcome {user.first_name} </h1> : <Login></Login>}
 
         <Register></Register>
         </div>
