@@ -7,6 +7,7 @@ const {SERVER_PORT, SESSION_SECRET, CONNECTION_STRING} = process.env
 const authCtrl = require('./controllers/authController')
 const proCtrl = require('./controllers/productController')
 const cartCtrl = require('./controllers/cartController')
+const stripeCtrl = require('./controllers/stripeController')
 
 const app = express()
 
@@ -42,6 +43,9 @@ app.post('/api/product', proCtrl.add)
 app.get('/cart', cartCtrl.getCart)
 app.delete('/cart/:product_id', cartCtrl.delete)
 app.post('/cart/product', cartCtrl.add)
+
+//stripe endpoint
+app.post('/api/payment',stripeCtrl.pay)
 
 
 
