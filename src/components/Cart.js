@@ -18,18 +18,25 @@ class Cart extends Component{
        this.props.getCart()
     }
 
-    onToken = (token) => {
-        let { amount } = this.state
+
+    onToken = async (token) => {
+        
+        let  amount  = await this.getTotal()
         amount *= 100
-        console.log(amount)
         token.card = void 0
-        axios.post('/api/payment', { token, amount: this.state.amount }).then(res => {
-          console.log(res)
-          alert(`Congratulations you paid Kevin ${amount}!`)
+        axios.post('/api/payment', { token, amount: amount }).then(res => {
+          alert(`Your payment of $${(amount/100).toFixed(2)} was successfully processed!`)
             })
           }
     onClosed = () => {
-    //    this.props.history.push('/orders')
+      this.props.history.push('/orders')
+    }
+    getTotal(){
+        let total = 0.00
+        this.props.cart.map((item) =>{
+            return total += +item.price 
+        })
+        return total
     }
 
     render(){
@@ -40,16 +47,19 @@ class Cart extends Component{
     <div>Cart
         
         {this.props.cart.map((item, index) => {
-        
+                
             return(
+               
                 <div key={index}>
-                {item.name}
+                {item.name} 
                 {item.price}
+                
                 <button onClick={() => {this.props.deleteFromCart(index)}}>Remove from Cart</button>
                 </div>
             )
         })}
-    {this.state.amount}
+       
+    total:${this.getTotal().toFixed(2)}
     <div style={{display:'flex',flexDirection:'column', alignItems:'center', marginTop:'50px'}}>
     <StripeCheckout
       name='SaberSite Checkout' //header
@@ -57,7 +67,7 @@ class Cart extends Component{
       description='' //subtitle - beneath header
       stripeKey={process.env.REACT_APP_PUBLIC_KEY} //public key not secret key
       token={this.onToken} //fires the call back
-      amount={this.state.amount} //this will be in cents
+      amount={this.getTotal() * 100} //this will be in cents
       currency="USD" 
       // image={imageUrl} // the pop-in header image (default none)
       // ComponentClass="div" //initial default button styling on block scope (defaults to span)
@@ -72,9 +82,7 @@ class Cart extends Component{
     >
       {/* <button>Checkout</button> */}
     </StripeCheckout>
-    <input value={this.state.amount}
-        type='number'
-        onChange={e=>this.setState({amount:+e.target.value})}/>
+    
     </div>
     </div>
     )
