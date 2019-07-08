@@ -8,6 +8,7 @@ const authCtrl = require('./controllers/authController')
 const proCtrl = require('./controllers/productController')
 const cartCtrl = require('./controllers/cartController')
 const stripeCtrl = require('./controllers/stripeController')
+const orderCtrl = require('./controllers/orderController')
 
 const app = express()
 
@@ -46,6 +47,10 @@ app.post('/cart/product', cartCtrl.add)
 
 //stripe endpoint
 app.post('/api/payment',stripeCtrl.pay)
+
+//orders endpoint
+app.get('/orders', orderCtrl.display)
+app.get('/allorders', orderCtrl.allOrders)
 
 
 

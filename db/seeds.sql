@@ -7,8 +7,6 @@ CREATE TABLE force_users (
     is_admin BOOLEAN DEFAULT FALSE
 );
 
-insert into force_users(first_name, last_name, email, hash)
-values ('jim', 'james', 'jamse@gmail.xom', 'fklajnwe');
 
 CREATE TABLE products (
     product_id SERIAL PRIMARY KEY,
@@ -19,32 +17,32 @@ CREATE TABLE products (
     description TEXT
 );
 
-insert into products (name, category, price, image, description)
-values ('hat', 'hat', 12.12, 'hat', 'just a hat' ); x3
 
 CREATE TABLE orders (
     order_id SERIAL PRIMARY KEY,
     user_id INT REFERENCES force_users(user_id),
     total DECIMAL,
-    date DATE,
-    fullfilled BOOLEAN DEFAULT FALSE
+    address VARCHAR,
+    city VARCHAR,
+    state VARCHAR,
+    zipcode INT,
+    country VARCHAR,
+    shipped BOOLEAN DEFAULT FALSE
 );
 
-insert into orders (user_id, total)
-values (1, 28.00);
 
 CREATE TABLE orders_products(
     order_id INT REFERENCES orders(order_id),
     product_id INT REFERENCES products(product_id));
 
-insert into orders_products(order_id, product_id)
-values(1, 1);
-
-insert into orders_products(order_id, product_id)
-values(1, 2);
 
 select * from force_users;
 select * from products;
 select * from orders;
 select * from orders_products;
 
+SELECT u.first_name, u.last_name, o.address, o.city, o.state, o.zipcode, o.country, o.order_id, p.name
+FROM force_users u
+JOIN orders o ON u.user_id = o.user_id
+JOIN orders_products op ON o.order_id = op.order_id
+JOIN products p ON op.product_id = p.product_id;

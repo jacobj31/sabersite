@@ -4,7 +4,7 @@ import {deleteFromCart, getCart} from '../redux/reducers/cart'
 import StripeCheckout from 'react-stripe-checkout'
 import axios from 'axios'
 import {withRouter} from 'react-router-dom'
-
+import Header from './Header'
 class Cart extends Component{
     constructor(props){
         super(props)
@@ -17,7 +17,10 @@ class Cart extends Component{
     componentDidMount(){
        this.props.getCart()
     }
-
+  
+    componentDidUpdate(){
+      this.props.getCart()
+    }
 
     onToken = async (token) => {
         
@@ -29,7 +32,7 @@ class Cart extends Component{
             })
           }
     onClosed = () => {
-      this.props.history.push('/orders')
+      this.props.getCart()
     }
     getTotal(){
         let total = 0.00
@@ -40,19 +43,19 @@ class Cart extends Component{
     }
 
     render(){
-        console.log(this.props)
 
     return(
-        
-    <div>Cart
-        
+    
+    this.props.cart.length ? 
+    <div>
+        <Header></Header>
         {this.props.cart.map((item, index) => {
-                
+               
             return(
                
                 <div key={index}>
                 {item.name} 
-                {item.price}
+                ${item.price}
                 
                 <button onClick={() => {this.props.deleteFromCart(index)}}>Remove from Cart</button>
                 </div>
@@ -60,7 +63,7 @@ class Cart extends Component{
         })}
        
     total:${this.getTotal().toFixed(2)}
-    <div style={{display:'flex',flexDirection:'column', alignItems:'center', marginTop:'50px'}}>
+    <div style={{display:'flex',flexDirection:'column', alignItems:'center', marginTop:'0px'}}>
     <StripeCheckout
       name='SaberSite Checkout' //header
       image={imageUrl}
@@ -76,16 +79,19 @@ class Cart extends Component{
       opened={this.onOpened} //fires cb when stripe is opened
       closed={this.onClosed} //fires cb when stripe is closed
       allowRememberMe // "Remember Me" option (default true)
-      billingAddress={false}
-      // shippingAddress //you can collect their address
-      zipCode={false}
+      billingAddress
+      shippingAddress //you can collect their address
+      zipCode
     >
       {/* <button>Checkout</button> */}
     </StripeCheckout>
+    </div>
+    </div>
+    : <div>
+      <Header></Header>
+      Empty, your cart is!
+      </div>)
     
-    </div>
-    </div>
-    )
 }
 }
 

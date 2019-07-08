@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {register} from '../redux/reducers/user'
 import {withRouter} from 'react-router-dom'
+import { MDBContainer, MDBRow, MDBCol, MDBBtn, MDBInput} from 'mdbreact'
 
 
 class RegisterForm extends Component {
@@ -26,35 +27,73 @@ class RegisterForm extends Component {
     handleSubmit = () => {
         let {email, password, first_name, last_name} = this.state
         this.props.register({email, password, first_name, last_name})
- //       this.props.history.push('/home')
+       this.props.history.push('/home')
 
     }
 
     render(){
         return(
-            <div>
-                <input
-                    name='email'
-                    type='text'
-                    placeholder='Email'
-                    onChange={this.handleChange}/>
-                <input
-                    name='password'
-                    type='password'
-                    placeholder='Password'
-                    onChange={this.handleChange}/>
-                <input
+    <MDBContainer >
+      <MDBRow center>
+        <MDBCol md="5">
+          <form>
+            <p className="h4 text-center mb-4">Sign up</p>
+            {/* <label htmlFor="defaultFormRegisterNameEx" className="grey-text">
+              Your name
+            </label> */}
+            <MDBInput
                     name='first_name'
                     type='text'
-                    placeholder='First Name'
+                    hint='First Name'
                     onChange={this.handleChange}/>
-                <input
+            <br />
+            {/* <label htmlFor="defaultFormRegisterEmailEx" className="grey-text">
+              Your email
+            </label> */}
+          <MDBInput
                     name='last_name'
                     type='text'
-                    placeholder='Last Name'
+                    hint='Last Name'
                     onChange={this.handleChange}/>
-                <button onClick={this.handleSubmit}>Register</button>
+            <br />
+            {/* <label
+              htmlFor="defaultFormRegisterConfirmEx"
+              className="grey-text"
+            >
+              Confirm your email
+            </label> */}
+            <MDBInput
+                    name='email'
+                    type='text'
+                    hint='Email'
+                    onChange={this.handleChange}/>
+            <br />
+            {/* <label
+              htmlFor="defaultFormRegisterPasswordEx"
+              className="grey-text"
+            >
+              Your password
+            </label> */}
+            <MDBInput
+                    name='password'
+                    type='password'
+                    hint='Password'
+                    onChange={this.handleChange}/>
+            <div style= {{marginBottom: '6px'}}className="text-center mt-4">
+              <MDBBtn rounded color="primary" type="submit" onClick= {this.handleSubmit}>
+                Register
+              </MDBBtn>
+              
             </div>
+          </form>
+        </MDBCol>
+      </MDBRow>
+    </MDBContainer>
+           
+             
+                
+                
+            
         )
     }
 }

@@ -17,8 +17,9 @@ module.exports={
     },
 
     delete: (req, res) => {
+
         let index = req.params
-        req.session.cart.splice(index, 1)
+        req.session.cart.splice(index.product_id, 1)
         res.send(req.session.cart)
         
     }

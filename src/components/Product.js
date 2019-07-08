@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {viewProduct, editProduct} from '../redux/reducers/products'
 import {addToCart} from '../redux/reducers/cart'
+import Header from './Header'
 
 
 class Product extends Component{
@@ -44,6 +45,7 @@ class Product extends Component{
     render(){
     return(
         <div>
+            <Header></Header>
             {this.props.product && this.props.product.product_id ? 
                 <div>
                     {this.props.product.name}
@@ -89,7 +91,7 @@ class Product extends Component{
                     <button onClick={() => this.handleSubmit(this.props.product.product_id)}>Confirm Edit</button>
                     
                 </div>: null}
-                    <button onClick={() => this.toggleEdit()}>{this.state.editing? 'Cancel': 'Edit'}</button>
+                    {this.props.user && this.props.user.is_admin? <button onClick={() => this.toggleEdit()}>{this.state.editing? 'Cancel': 'Edit'}</button>:null}
                     <button onClick={() => this.props.addToCart(this.props.product)}>Add To Cart</button>
                 </div>
                 :null}
@@ -105,6 +107,7 @@ class Product extends Component{
 let mapStateToProps = state => {
     let {selected: product} = state.products
     let {data: cart} = state.cart
-    return{product, cart}
+    let {data: user} = state.user
+    return{product, cart, user}
 }
 export default connect(mapStateToProps, {viewProduct, editProduct, addToCart})(Product)

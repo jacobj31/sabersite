@@ -3,7 +3,7 @@ import {connect} from 'react-redux'
 
 import {getProducts, deleteProduct, addProduct, viewProduct} from '../redux/reducers/products'
 import {Link} from 'react-router-dom'
-
+import Header from './Header'
 
 class Store extends React.Component{
     constructor(props){
@@ -18,11 +18,14 @@ class Store extends React.Component{
             addItem: false
         }
     }
+
+
+    
     
    
     componentDidMount(){
-       this.props.getProducts()  
-       
+       this.props.getProducts()
+       console.log(this.props.user)
     }
 
     toggleAdd = () => {
@@ -45,6 +48,8 @@ class Store extends React.Component{
         
     return(
         <div>
+      <Header></Header>
+
             
             <section>
             {this.props.products && this.props.products.map(product=> 
@@ -57,7 +62,7 @@ class Store extends React.Component{
             </Link>
             
             
-            <button onClick={() => this.props.deleteProduct(product.product_id)}>Delete</button>
+            {this.props.user && this.props.user.is_admin? <button onClick={() => this.props.deleteProduct(product.product_id)}>Delete</button>: null}
             </div>)}
             </section>
             {this.state.addItem? 
@@ -89,14 +94,15 @@ class Store extends React.Component{
                     onChange={this.handleChange}/>
                 <button onClick={this.handleSubmit}>Confirm Add</button>
                 <button onClick={this.toggleAdd}>Cancel</button>
-            </div> :<button onClick={this.toggleAdd}>Add Item</button>}
+            </div> :this.props.user && this.props.user.is_admin? <button onClick={this.toggleAdd}>Add Item</button>: null}
         </div>
     )
 }}
 
 let mapStateToProps = state => {
     let {data: products} = state.products
-    return{products}
+    let { data: user } = state.user 
+    return{products, user}
 }
 
 export default connect(mapStateToProps, {getProducts, deleteProduct, addProduct, viewProduct})(Store)

@@ -4,7 +4,6 @@ import {HashRouter as Router, Route, Switch} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {getUser} from './redux/reducers/user'
 
-import Header from './components/Header'
 import About from './components/About'
 import Home from './components/Home'
 import Orders from './components/Orders'
@@ -26,7 +25,7 @@ componentDidMount(){
   return (
     <div className="App">
      <Router>
-      <Header></Header>
+     
         <Switch>
           <Route path = '/store/:product' component = {Product}/>
           <Route path = '/cart' component = {Cart}/>
