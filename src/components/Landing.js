@@ -23,11 +23,11 @@ class Landing extends Component {
     let {user} = this.props
     
     return(
-        <div style={{display: 'flex', flexDirection: 'column', background:'gray', height: '100vh'}}>
+        <div style={{display: 'flex', flexDirection: 'column', background:'#90a4ae', height: '100vh'}}>
         <Header></Header>
         {this.state.register? 
         <div ><Register></Register> 
-        <MDBBtn rounded color = 'danger' onClick = {() => {this.setState({register: !this.state.register})}}>Cancel</MDBBtn>
+        <MDBBtn style={{borderRadius:'4px'}} color = 'danger' onClick = {() => {this.setState({register: !this.state.register})}}>Cancel</MDBBtn>
         </div>: 
         
         <div><Login></Login> 

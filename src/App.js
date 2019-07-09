@@ -23,7 +23,7 @@ componentDidMount(){
 
   render(){
   return (
-    <div className="App">
+    <div className="App" style={{background:'#90a4ae', height:'100vh'}}>
      <Router>
      
         <Switch>

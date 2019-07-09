@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {logout} from '../redux/reducers/user'
-import {withRouter, Link} from 'react-router-dom'
+import {withRouter} from 'react-router-dom'
 import { MDBNavbar, MDBNavbarBrand, MDBNavbarNav, MDBNavItem, MDBNavLink, MDBCollapse, MDBContainer,
     MDBHamburgerToggler } from 'mdbreact';
 
@@ -35,30 +35,30 @@ class Header extends Component{
 
 
         this.props.user && this.props.user.user_id ? 
-        <div>
-           <MDBContainer>
-      <MDBNavbar color="black" style={{marginTop: '0px', background:'black'}} light>
+        
+      <MDBContainer>
+      <MDBNavbar style={{marginTop: '0px', background:'#263238', borderRadius:'3px'}} light>
         <MDBContainer>
-          <MDBNavbarBrand style={{fontFamily:'bold', color:'#2979ff'}}>
+          <MDBNavbarBrand style={{fontFamily:'bold', color:'#eceff1'}}>
             LED Custom Saber Builds
           </MDBNavbarBrand>
-          <MDBHamburgerToggler color="#76ff03" id="hamburger1" onClick={()=> this.toggleSingleCollapse('collapse1')} />
+          <MDBHamburgerToggler color="#eceff1" id="hamburger1" onClick={()=> this.toggleSingleCollapse('collapse1')} />
             <MDBCollapse isOpen={this.state.collapse1} navbar>
               <MDBNavbarNav left>
                 <MDBNavItem active>
-                  <MDBNavLink style={{color: '#42a5f5'}}to="/home" >Home</MDBNavLink>
+                  <MDBNavLink style={{color: '#eceff1'}}to="/home" >Home</MDBNavLink>
                 </MDBNavItem>
                 <MDBNavItem>
-                  <MDBNavLink style={{color: '#76ff03'}}to="/about">About</MDBNavLink>
+                  <MDBNavLink style={{color: '#eceff1'}}to="/about">About</MDBNavLink>
                 </MDBNavItem>
                 <MDBNavItem>
-                  <MDBNavLink style={{color: '#aa00ff '}}to="/store">Store</MDBNavLink>
+                  <MDBNavLink style={{color: '#eceff1'}}to="/store">Store</MDBNavLink>
                 </MDBNavItem>
                 <MDBNavItem>
-                  <MDBNavLink style={{color: '#ffea00'}}to="/cart">Cart</MDBNavLink>
+                  <MDBNavLink style={{color: '#eceff1'}}to="/cart">Cart</MDBNavLink>
                 </MDBNavItem>
                 <MDBNavItem>
-                  <MDBNavLink style={{color: 'white'}}to="/orders">Orders</MDBNavLink>
+                  <MDBNavLink style={{color: '#eceff1'}}to="/orders">Orders</MDBNavLink>
                 </MDBNavItem>
                 <MDBNavItem>
                   <button style={{background:'none', border:'none', color:'red'}}onClick={this.out}>Logout</button> 
@@ -68,7 +68,7 @@ class Header extends Component{
         </MDBContainer>
       </MDBNavbar>
     </MDBContainer> 
-        </div>: 
+        : 
         <div>
             <br />
             <br />

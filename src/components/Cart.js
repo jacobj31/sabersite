@@ -5,6 +5,9 @@ import StripeCheckout from 'react-stripe-checkout'
 import axios from 'axios'
 import {withRouter} from 'react-router-dom'
 import Header from './Header'
+import {  MDBRow, MDBCol, MDBCard, MDBCardImage, MDBCardBody, MDBBadge, MDBContainer } from "mdbreact";
+
+
 class Cart extends Component{
     constructor(props){
         super(props)
@@ -47,49 +50,66 @@ class Cart extends Component{
     return(
     
     this.props.cart.length ? 
-    <div>
+    <div style={{background:'#90a4ae', height:'100vh'}}>
         <Header></Header>
-        {this.props.cart.map((item, index) => {
-               
-            return(
-               
-                <div key={index}>
-                {item.name} 
-                ${item.price}
-                
-                <button onClick={() => {this.props.deleteFromCart(index)}}>Remove from Cart</button>
-                </div>
-            )
-        })}
-       
-    total:${this.getTotal().toFixed(2)}
-    <div style={{display:'flex',flexDirection:'column', alignItems:'center', marginTop:'0px'}}>
-    <StripeCheckout
-      name='SaberSite Checkout' //header
-      image={imageUrl}
-      description='' //subtitle - beneath header
-      stripeKey={process.env.REACT_APP_PUBLIC_KEY} //public key not secret key
-      token={this.onToken} //fires the call back
-      amount={this.getTotal() * 100} //this will be in cents
-      currency="USD" 
-      // image={imageUrl} // the pop-in header image (default none)
-      // ComponentClass="div" //initial default button styling on block scope (defaults to span)
-      panelLabel="Submit Payment" //text on the submit button
-      locale="en" //locale or language (e.g. en=english, fr=french, zh=chinese)
-      opened={this.onOpened} //fires cb when stripe is opened
-      closed={this.onClosed} //fires cb when stripe is closed
-      allowRememberMe // "Remember Me" option (default true)
-      billingAddress
-      shippingAddress //you can collect their address
-      zipCode
-    >
-      {/* <button>Checkout</button> */}
-    </StripeCheckout>
+        <br />
+        <MDBContainer>
+          <MDBRow center>
+              <MDBCol md='8'>
+              {this.props.cart.map((item, index) => {
+                    
+                  return(
+                    
+                      <div key={index}>
+                      {item.name} 
+                      ${item.price}
+                      
+                      <button onClick={() => {this.props.deleteFromCart(index)}}>Remove from Cart</button>
+                      </div>
+                  )
+              })}
+              </MDBCol> 
+
+
+              <MDBCol md='4'>
+              total:${this.getTotal().toFixed(2)}
+              <div style={{display:'flex',flexDirection:'column', alignItems:'center', marginTop:'0px'}}>
+              <StripeCheckout
+              name='SaberSite Checkout' //header
+              image={imageUrl}
+              description='' //subtitle - beneath header
+              stripeKey={process.env.REACT_APP_PUBLIC_KEY} //public key not secret key
+              token={this.onToken} //fires the call back
+              amount={this.getTotal() * 100} //this will be in cents
+              currency="USD" 
+              // image={imageUrl} // the pop-in header image (default none)
+              // ComponentClass="div" //initial default button styling on block scope (defaults to span)
+              panelLabel="Submit Payment" //text on the submit button
+              locale="en" //locale or language (e.g. en=english, fr=french, zh=chinese)
+              opened={this.onOpened} //fires cb when stripe is opened
+              closed={this.onClosed} //fires cb when stripe is closed
+              allowRememberMe // "Remember Me" option (default true)
+              billingAddress
+              shippingAddress //you can collect their address
+              zipCode
+              >
+              {/* <button>Checkout</button> */}
+            </StripeCheckout>
+            </div>
+            </MDBCol>
+
+
+    
+        </MDBRow>
+      </MDBContainer>
     </div>
-    </div>
-    : <div>
+    
+    
+    
+    : <div style={{background:'#90a4ae', height:'100vh'}}>
       <Header></Header>
-      Empty, your cart is!
+      <br />
+      <h2 style={{color: '#eceff1'}}>Empty, your cart is!</h2>
       </div>)
     
 }

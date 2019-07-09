@@ -19,13 +19,15 @@ class Login extends Component {
         this.setState({
             [name]: value
         })
-        console.log(this.state.password)
+        
     }
     
     handleSubmit = () => {
         let {email, password} = this.state
         this.props.login({email, password})
        this.props.history.push('/home')
+       console.log(this.state.password)
+       console.log(this.state.email)
     }
 
     render(){
@@ -40,22 +42,22 @@ class Login extends Component {
                   {/* <label htmlFor="defaultFormLoginEmailEx" className="grey-text">
                     Your email
                   </label> */}
-                 <MDBInput
+                 <MDBInput style={{background:'white', borderRadius:'4px'}}
                     name='email'
                     type='text'
                     hint='Email'
                     onChange={this.handleChange}/>
-                  <br />
+                  
                   {/* <label htmlFor="defaultFormLoginPasswordEx" className="grey-text">
                     Your password
                   </label> */}
-                 <MDBInput
+                 <MDBInput style={{background:'white', borderRadius:'4px'}}
                     name='password'
                     type='password'
                     hint='Password'
                     onChange={this.handleChange}/>
                   <div className="text-center mt-4">
-                <MDBBtn rounded color = 'primary' size = 'md' onClick={this.handleSubmit}>Login</MDBBtn>
+                <MDBBtn style={{borderRadius:'4px'}} color = 'primary' size = 'md' onClick={this.handleSubmit}>Login</MDBBtn>
                 
                   </div>
                 </form>

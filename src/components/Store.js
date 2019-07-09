@@ -1,9 +1,10 @@
 import React from 'react'
 import {connect} from 'react-redux'
-
 import {getProducts, deleteProduct, addProduct, viewProduct} from '../redux/reducers/products'
 import {Link} from 'react-router-dom'
 import Header from './Header'
+import {  MDBRow, MDBCol, MDBCard, MDBCardImage, MDBCardBody, MDBBadge, MDBContainer } from "mdbreact";
+//import './Store.css'
 
 class Store extends React.Component{
     constructor(props){
@@ -39,44 +40,90 @@ class Store extends React.Component{
             [name]: value
         })
     }
+    
     handleSubmit = () => {
         let {name, category, price, image, description} = this.state
         this.props.addProduct({name, category, price, image, description})
+        this.toggleAdd()
     }
 
     render(){
         
     return(
-        <div>
-      <Header></Header>
-
+    <div>
+    <Header></Header>
+    <MDBContainer fluid style={{ width:'80vw', background:'#90a4ae'}}>
+        
+        
+        <MDBRow center>
             
-            <section>
+    
             {this.props.products && this.props.products.map(product=> 
+            <div 
             
-            <div key={product.product_id}>
+            key={product.product_id}>
+            <MDBCol size = '6' >
+            <br/>
+            <MDBCard
+                className="align-items-center" 
+                style={{width: '210px', height:'350px', padding:'3px', background:'#cfd8dc'}}>
+            <MDBCardImage
+              src={product.image}
+              top
+              style={{height:'180px'}}
+              alt="sample photo"
+              overlay="white-slight"
+            />
+            <MDBCardBody className="text-center" style={{display:'flex', flexDirection:'column', justifyContent:'flex-end'}}>
              
-            {product.name}
-            <Link to ={`/store/${product.product_id}`}>
+              <h5>
+                <strong>
+                  <a href="#!" className="dark-grey-text">
+                    {product.name}
+                    
+                  </a>
+                </strong>
+              </h5>
+              <h4 className="font-weight-bold blue-text">
+                <strong>${product.price}</strong>
+              </h4>
+              <Link to ={`/store/${product.product_id}`}>
                 <button onClick = {() => this.props.viewProduct(product.product_id)}>View Product</button>
             </Link>
+            </MDBCardBody>
+            
+            {this.props.user && this.props.user.is_admin? 
+            <button 
+            style={{marginTop:'-15px'}}
+            onClick={() => this.props.deleteProduct(product.product_id)}>Delete</button>: null}
+            </MDBCard>
+            
+        </MDBCol>
+            
+             
             
             
-            {this.props.user && this.props.user.is_admin? <button onClick={() => this.props.deleteProduct(product.product_id)}>Delete</button>: null}
+            
             </div>)}
-            </section>
+            </MDBRow>
+            
+
+
+
+
             {this.state.addItem? 
             <div>
+                <br />
                 <input
                     name='name'
                     type='text'
                     placeholder='Product Name'
                     onChange={this.handleChange}/>
-                <input
+                {/* <input
                     name='category'
                     type='text'
                     placeholder='Category'
-                    onChange={this.handleChange}/>
+                    onChange={this.handleChange}/> */}
                 <input
                     name='price'
                     type='text'
@@ -85,16 +132,20 @@ class Store extends React.Component{
                 <input
                     name='image'
                     type='text'
-                    placeholder='Image'
+                    placeholder='ImageURL'
                     onChange={this.handleChange}/>
-                <input
+                {/* <input
                     name='description'
                     type='text'
                     placeholder='Description'
-                    onChange={this.handleChange}/>
+                    onChange={this.handleChange}/> */}
+                <div>
                 <button onClick={this.handleSubmit}>Confirm Add</button>
                 <button onClick={this.toggleAdd}>Cancel</button>
-            </div> :this.props.user && this.props.user.is_admin? <button onClick={this.toggleAdd}>Add Item</button>: null}
+                </div>
+
+            </div> :this.props.user && this.props.user.is_admin? <div><br /> <button onClick={this.toggleAdd}>Add Item</button><br /></div>: null}
+        </MDBContainer>
         </div>
     )
 }}

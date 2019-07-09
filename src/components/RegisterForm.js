@@ -41,46 +41,46 @@ class RegisterForm extends Component {
             {/* <label htmlFor="defaultFormRegisterNameEx" className="grey-text">
               Your name
             </label> */}
-            <MDBInput
+            <MDBInput style={{background:'white', borderRadius:'4px'}}
                     name='first_name'
                     type='text'
                     hint='First Name'
                     onChange={this.handleChange}/>
-            <br />
+            
             {/* <label htmlFor="defaultFormRegisterEmailEx" className="grey-text">
               Your email
             </label> */}
-          <MDBInput
+          <MDBInput style={{background:'white', borderRadius:'4px'}}
                     name='last_name'
                     type='text'
                     hint='Last Name'
                     onChange={this.handleChange}/>
-            <br />
+            
             {/* <label
               htmlFor="defaultFormRegisterConfirmEx"
               className="grey-text"
             >
               Confirm your email
             </label> */}
-            <MDBInput
+            <MDBInput style={{background:'white', borderRadius:'4px'}}
                     name='email'
                     type='text'
                     hint='Email'
                     onChange={this.handleChange}/>
-            <br />
+            
             {/* <label
               htmlFor="defaultFormRegisterPasswordEx"
               className="grey-text"
             >
               Your password
             </label> */}
-            <MDBInput
+            <MDBInput style={{background:'white', borderRadius:'4px'}}
                     name='password'
                     type='password'
                     hint='Password'
                     onChange={this.handleChange}/>
             <div style= {{marginBottom: '6px'}}className="text-center mt-4">
-              <MDBBtn rounded color="primary" type="submit" onClick= {this.handleSubmit}>
+              <MDBBtn style={{borderRadius:'4px'}} color="primary" type="submit" onClick= {this.handleSubmit}>
                 Register
               </MDBBtn>
               
