@@ -52,7 +52,7 @@ class Store extends React.Component{
     return(
     <div>
     <Header></Header>
-    <MDBContainer fluid style={{ width:'80vw', background:'#90a4ae'}}>
+    <MDBContainer fluid style={{ width:'100vw', background:'#90a4ae'}}>
         
         
         <MDBRow center>
@@ -78,7 +78,7 @@ class Store extends React.Component{
              
               <h5>
                 <strong>
-                  <a href="#!" className="dark-grey-text">
+                  <a href="#!" style={{color:'#263238'}}>
                     {product.name}
                     
                   </a>
@@ -88,13 +88,15 @@ class Store extends React.Component{
                 <strong>${product.price}</strong>
               </h4>
               <Link to ={`/store/${product.product_id}`}>
-                <button onClick = {() => this.props.viewProduct(product.product_id)}>View Product</button>
+                <button 
+                 style={{background:'#263238', border:'none', color:'white', borderRadius:'3px'}}
+                onClick = {() => this.props.viewProduct(product.product_id)}>View Product</button>
             </Link>
             </MDBCardBody>
             
             {this.props.user && this.props.user.is_admin? 
-            <button 
-            style={{marginTop:'-15px'}}
+            <button
+            style={{marginTop:'-15px', background:'#b71c1c', border:'none', color:'white', borderRadius:'3px'}} 
             onClick={() => this.props.deleteProduct(product.product_id)}>Delete</button>: null}
             </MDBCard>
             
@@ -114,7 +116,7 @@ class Store extends React.Component{
             {this.state.addItem? 
             <div>
                 <br />
-                <input
+                <input style={{borderRadius:'4px', margin:'3px'}}
                     name='name'
                     type='text'
                     placeholder='Product Name'
@@ -124,12 +126,12 @@ class Store extends React.Component{
                     type='text'
                     placeholder='Category'
                     onChange={this.handleChange}/> */}
-                <input
+                <input style={{borderRadius:'4px', margin:'3px'}}
                     name='price'
                     type='text'
                     placeholder='Price'
                     onChange={this.handleChange}/>
-                <input
+                <input style={{borderRadius:'4px', margin:'3px'}}
                     name='image'
                     type='text'
                     placeholder='ImageURL'
@@ -140,11 +142,17 @@ class Store extends React.Component{
                     placeholder='Description'
                     onChange={this.handleChange}/> */}
                 <div>
-                <button onClick={this.handleSubmit}>Confirm Add</button>
-                <button onClick={this.toggleAdd}>Cancel</button>
+                <button 
+                style={{background:'#1b5e20', border:'none', color:'white', borderRadius:'3px'}}
+                onClick={this.handleSubmit}>Confirm Add</button>
+                <button style={{background:'#b71c1c', border:'none', color:'white', borderRadius:'3px', margin:'3px'}}onClick={this.toggleAdd}>Cancel</button>
                 </div>
 
-            </div> :this.props.user && this.props.user.is_admin? <div><br /> <button onClick={this.toggleAdd}>Add Item</button><br /></div>: null}
+            </div> :this.props.user && this.props.user.is_admin? <div><br /> 
+            <button 
+            style={{background:'#1b5e20', border:'none', color:'white', borderRadius:'3px', margin:'3px'}}
+            onClick={this.toggleAdd}
+            >Add Item</button><br /></div>: null}
         </MDBContainer>
         </div>
     )

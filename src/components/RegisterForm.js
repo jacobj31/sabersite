@@ -80,9 +80,9 @@ class RegisterForm extends Component {
                     hint='Password'
                     onChange={this.handleChange}/>
             <div style= {{marginBottom: '6px'}}className="text-center mt-4">
-              <MDBBtn style={{borderRadius:'4px'}} color="primary" type="submit" onClick= {this.handleSubmit}>
+              <button style={{borderRadius:'3px', color:'white', background:'#263238', border:'none', height:'40px', width:'100px'}} type="submit" onClick= {this.handleSubmit}>
                 Register
-              </MDBBtn>
+              </button>
               
             </div>
           </form>

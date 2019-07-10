@@ -48,9 +48,9 @@ class Header extends Component{
                 <MDBNavItem active>
                   <MDBNavLink style={{color: '#eceff1'}}to="/home" >Home</MDBNavLink>
                 </MDBNavItem>
-                <MDBNavItem>
+                {/* <MDBNavItem>
                   <MDBNavLink style={{color: '#eceff1'}}to="/about">About</MDBNavLink>
-                </MDBNavItem>
+                </MDBNavItem> */}
                 <MDBNavItem>
                   <MDBNavLink style={{color: '#eceff1'}}to="/store">Store</MDBNavLink>
                 </MDBNavItem>
@@ -61,7 +61,7 @@ class Header extends Component{
                   <MDBNavLink style={{color: '#eceff1'}}to="/orders">Orders</MDBNavLink>
                 </MDBNavItem>
                 <MDBNavItem>
-                  <button style={{background:'none', border:'none', color:'red'}}onClick={this.out}>Logout</button> 
+                  <button style={{background:'none', border:'none', color:'#b71c1c'}}onClick={this.out}>Logout</button> 
                 </MDBNavItem>
               </MDBNavbarNav>
             </MDBCollapse>

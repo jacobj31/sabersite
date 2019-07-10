@@ -27,7 +27,7 @@ class Landing extends Component {
         <Header></Header>
         {this.state.register? 
         <div ><Register></Register> 
-        <MDBBtn style={{borderRadius:'4px'}} color = 'danger' onClick = {() => {this.setState({register: !this.state.register})}}>Cancel</MDBBtn>
+        <button style={{background:'#b71c1c', color:'white', border:'none', borderRadius:'3px', height:'35px', width:'90px'}} onClick = {() => {this.setState({register: !this.state.register})}}>Cancel</button>
         </div>: 
         
         <div><Login></Login> 

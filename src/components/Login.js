@@ -47,7 +47,7 @@ class Login extends Component {
                     type='text'
                     hint='Email'
                     onChange={this.handleChange}/>
-                  
+                
                   {/* <label htmlFor="defaultFormLoginPasswordEx" className="grey-text">
                     Your password
                   </label> */}
@@ -57,7 +57,7 @@ class Login extends Component {
                     hint='Password'
                     onChange={this.handleChange}/>
                   <div className="text-center mt-4">
-                <MDBBtn style={{borderRadius:'4px'}} color = 'primary' size = 'md' onClick={this.handleSubmit}>Login</MDBBtn>
+                <button style={{borderRadius:'3px', color:'white', background:'#263238', border:'none', height:'40px', width:'100px', marginBottom:'15px'}}  onClick={this.handleSubmit}>Login</button>
                 
                   </div>
                 </form>
