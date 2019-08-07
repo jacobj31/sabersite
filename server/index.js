@@ -1,6 +1,7 @@
 const express = require('express')
 const massive = require('massive')
 const session = require('express-session')
+const path = require('path')
 require('dotenv/config')
 const {SERVER_PORT, SESSION_SECRET, CONNECTION_STRING} = process.env
 
@@ -12,7 +13,7 @@ const orderCtrl = require('./controllers/orderController')
 
 const app = express()
 
-
+app.use(express.static(`${__dirname}/../build`))
 app.listen(SERVER_PORT, () => console.log('Welcome to port', SERVER_PORT))
 
 app.use(express.json())
@@ -57,4 +58,8 @@ app.get('/allorders', orderCtrl.allOrders)
 massive(CONNECTION_STRING).then(db => {
     app.set('db', db)
     console.log('db connected')
+});
+
+app.get('*', (req, res)=>{
+    res.sendFile(path.join(__dirname, '../build/index.html'));
 });

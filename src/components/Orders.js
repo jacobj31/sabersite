@@ -63,3 +63,6 @@ let mapStateToProps = state => {
 }
 
 export default connect(mapStateToProps, {getOrders, getAllOrders})(Orders)
+
+
+
